@@ -3,35 +3,50 @@ type CalorieEntry = {
   calories: number;
   description: string;
   timestamp: number;
+  imageUrl?: string;
 };
 
 class CaloriesDB {
   private dbName = "calories-tracker";
-  private version = 3;
+  private version = 5;
   private storeName = "calories";
   private settingsStore = "settings";
+  private imageStore = "images";
 
   async init(): Promise<IDBDatabase> {
     return new Promise((resolve, reject) => {
       const request = indexedDB.open(this.dbName, this.version);
 
       request.onerror = () => {
+        console.error("Database error:", request.error);
         reject(request.error);
       };
 
       request.onsuccess = () => {
-        resolve(request.result);
+        const db = request.result;
+        console.log("Database opened successfully");
+        console.log("Object stores:", Array.from(db.objectStoreNames));
+        resolve(db);
       };
 
       request.onupgradeneeded = (event) => {
         const db = (event.target as IDBOpenDBRequest).result;
+        console.log("Database upgrade needed");
 
-        // Create settings store if it doesn't exist
+        // Delete existing stores to ensure clean upgrade
+        if (db.objectStoreNames.contains(this.imageStore)) {
+          db.deleteObjectStore(this.imageStore);
+        }
+
+        // Create image store
+        console.log("Creating image store");
+        db.createObjectStore(this.imageStore, { keyPath: "id" });
+
+        // Create other stores
         if (!db.objectStoreNames.contains(this.settingsStore)) {
           db.createObjectStore(this.settingsStore, { keyPath: "id" });
         }
 
-        // Handle calories store
         if (!db.objectStoreNames.contains(this.storeName)) {
           const store = db.createObjectStore(this.storeName, {
             keyPath: "id",
@@ -47,9 +62,19 @@ class CaloriesDB {
   async addCalories(
     calories: number,
     description: string,
-    timestamp?: number
+    timestamp?: number,
+    imageBlob?: Blob
   ): Promise<CalorieEntry> {
     const db = await this.init();
+    let imageUrl: string | undefined;
+
+    if (imageBlob) {
+      console.log("Storing image blob:", imageBlob);
+      const imageId = crypto.randomUUID();
+      await this.storeImage(imageId, imageBlob);
+      imageUrl = imageId;
+    }
+
     return new Promise((resolve, reject) => {
       const transaction = db.transaction(this.storeName, "readwrite");
       const store = transaction.objectStore(this.storeName);
@@ -58,6 +83,7 @@ class CaloriesDB {
         calories,
         description,
         timestamp: timestamp || Date.now(),
+        imageUrl,
       };
 
       const request = store.add(entry);
@@ -74,6 +100,53 @@ class CaloriesDB {
       transaction.oncomplete = () => {
         db.close();
       };
+    });
+  }
+
+  async storeImage(id: string, blob: Blob): Promise<void> {
+    console.log("Attempting to store image", id, blob);
+    const db = await this.init();
+    return new Promise((resolve, reject) => {
+      try {
+        const transaction = db.transaction(this.imageStore, "readwrite");
+        const store = transaction.objectStore(this.imageStore);
+
+        const request = store.put({ id, blob });
+
+        request.onsuccess = () => {
+          console.log("Image stored successfully");
+          resolve();
+        };
+
+        request.onerror = () => {
+          console.error("Failed to store image:", request.error);
+          reject(request.error);
+        };
+
+        transaction.oncomplete = () => {
+          console.log("Transaction completed");
+          db.close();
+        };
+
+        transaction.onerror = () => {
+          console.error("Transaction error:", transaction.error);
+        };
+      } catch (error) {
+        console.error("Error in storeImage:", error);
+        reject(error);
+      }
+    });
+  }
+
+  async getImage(id: string): Promise<Blob | null> {
+    const db = await this.init();
+    return new Promise((resolve) => {
+      const transaction = db.transaction(this.imageStore, "readonly");
+      const store = transaction.objectStore(this.imageStore);
+      const request = store.get(id);
+
+      request.onsuccess = () => resolve(request.result?.blob || null);
+      transaction.oncomplete = () => db.close();
     });
   }
 

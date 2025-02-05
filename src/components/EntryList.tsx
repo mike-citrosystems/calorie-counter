@@ -1,4 +1,6 @@
 import { format } from "date-fns";
+import { useState } from "react";
+import EntryDetails from "./EntryDetails";
 
 const CATEGORY_STYLES = {
   Breakfast: {
@@ -24,6 +26,7 @@ export type CalorieEntry = {
   calories: number;
   description: string;
   timestamp: number;
+  imageUrl?: string;
 };
 
 interface EntryListProps {
@@ -37,6 +40,8 @@ export default function EntryList({
   onDelete,
   showDate = false,
 }: EntryListProps) {
+  const [selectedEntry, setSelectedEntry] = useState<CalorieEntry | null>(null);
+
   const getCategoryFromDescription = (description: string) => {
     const match = description.match(/^\[(.*?)\]/);
     return match ? match[1] : null;
@@ -60,7 +65,8 @@ export default function EntryList({
         return (
           <div
             key={entry.id}
-            className="py-3 flex items-center justify-between hover:bg-gray-50 transition-colors duration-150"
+            onClick={() => setSelectedEntry(entry)}
+            className="py-3 flex items-center justify-between hover:bg-gray-50 transition-colors duration-150 cursor-pointer"
           >
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-3">
@@ -89,7 +95,10 @@ export default function EntryList({
             </div>
             {onDelete && entry.id && (
               <button
-                onClick={() => onDelete(entry.id!)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onDelete(entry.id!);
+                }}
                 className="ml-4 text-gray-400 hover:text-red-500 transition-colors duration-150"
                 aria-label="Delete entry"
               >
@@ -112,6 +121,14 @@ export default function EntryList({
           </div>
         );
       })}
+
+      {selectedEntry && (
+        <EntryDetails
+          entry={selectedEntry}
+          onClose={() => setSelectedEntry(null)}
+        />
+      )}
+
       {entries.length === 0 && (
         <p className="py-8 text-center text-gray-500">No entries to display</p>
       )}

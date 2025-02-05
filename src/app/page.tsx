@@ -68,9 +68,14 @@ export default function Home() {
     }
   };
 
-  const handleAddCalories = async (amount: number, description: string) => {
+  const handleAddCalories = async (
+    amount: number,
+    description: string,
+    timestamp?: number,
+    imageBlob?: Blob
+  ) => {
     try {
-      await db.addCalories(amount, description);
+      await db.addCalories(amount, description, timestamp, imageBlob);
       await loadTodayData();
     } catch (error) {
       console.error("Failed to add calories:", error);

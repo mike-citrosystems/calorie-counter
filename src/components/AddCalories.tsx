@@ -4,9 +4,15 @@ import { useState, useEffect } from "react";
 import { format } from "date-fns";
 import SearchableSelect from "./SearchableSelect";
 import db from "@/lib/db";
+import ImageCapture from "./ImageCapture";
 
 interface AddCaloriesProps {
-  onAdd: (calories: number, description: string, timestamp?: number) => void;
+  onAdd: (
+    calories: number,
+    description: string,
+    timestamp?: number,
+    imageBlob?: Blob
+  ) => void;
 }
 
 const CATEGORIES = [
@@ -33,6 +39,7 @@ export default function AddCalories({ onAdd }: AddCaloriesProps) {
       calories: number;
     }>
   >([]);
+  const [imageBlob, setImageBlob] = useState<Blob | null>(null);
 
   useEffect(() => {
     const loadPastEntries = async () => {
@@ -61,7 +68,7 @@ export default function AddCalories({ onAdd }: AddCaloriesProps) {
     }
   }, [isOpen]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!description || !calories) return;
 
@@ -73,13 +80,19 @@ export default function AddCalories({ onAdd }: AddCaloriesProps) {
       CATEGORIES.find((c) => c.id === category)?.label
     }] ${description}`;
 
-    onAdd(Number(calories), fullDescription, timestamp);
+    await onAdd(
+      Number(calories),
+      fullDescription,
+      timestamp,
+      imageBlob || undefined
+    );
     setIsOpen(false);
     setDescription("");
     setCalories("");
     setCategory("snack");
     setUseCustomDate(false);
     setCustomDate(format(new Date(), "yyyy-MM-dd'T'HH:mm"));
+    setImageBlob(null);
   };
 
   const handleDescriptionChange = (
@@ -199,6 +212,13 @@ export default function AddCalories({ onAdd }: AddCaloriesProps) {
               />
             </div>
           )}
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Photo
+            </label>
+            <ImageCapture onCapture={setImageBlob} />
+          </div>
 
           <div className="flex space-x-3">
             <button

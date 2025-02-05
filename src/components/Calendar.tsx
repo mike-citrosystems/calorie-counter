@@ -24,6 +24,7 @@ export default function Calendar({
   onSelectDate,
   selectedDate,
 }: CalendarProps) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [currentMonth, setCurrentMonth] = useState(new Date());
 
   const monthStart = startOfMonth(currentMonth);

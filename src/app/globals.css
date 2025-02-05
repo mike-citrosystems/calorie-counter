@@ -4,16 +4,4 @@
 
 body {
   background-color: #f5f5f7;
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
-  padding-bottom: env(safe-area-inset-bottom);
-}
-
-html {
-  height: -webkit-fill-available;
-}
-
-/* Adjust your bottom navigation to respect the safe area */
-.bottom-nav {
-  padding-bottom: env(safe-area-inset-bottom);
 }

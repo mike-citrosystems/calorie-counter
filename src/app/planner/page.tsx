@@ -10,3 +10,8 @@ export default function PlannerPage() {
     </div>
   );
 }
+
+export const metadata = {
+  title: "Planner | My Application",
+  description: "Plan your meals and track your progress",
+};

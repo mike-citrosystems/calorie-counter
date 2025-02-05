@@ -48,6 +48,9 @@ export default function RootLayout({
         <button
           className="fixed right-4 bottom-20 bg-blue-500 hover:bg-blue-600 text-white rounded-full p-4 shadow-lg transition-all duration-200 hover:scale-110 z-10"
           aria-label="Add new item"
+          onClick={() => {
+            /* Add your handler here */
+          }}
         >
           <AiOutlinePlus className="text-2xl" />
         </button>

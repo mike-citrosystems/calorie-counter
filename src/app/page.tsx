@@ -7,6 +7,10 @@ import db from "@/lib/db";
 import { seedDatabase } from "@/lib/seed";
 import EntryList from "@/components/EntryList";
 import { startOfDay, endOfDay } from "date-fns";
+import {
+  requestNotificationPermission,
+  scheduleNotifications,
+} from "@/lib/notifications";
 
 type CalorieEntry = {
   id?: number;
@@ -19,6 +23,17 @@ export default function Home() {
   const [calories, setCalories] = useState(0);
   const [entries, setEntries] = useState<CalorieEntry[]>([]);
   const [isSeeded, setIsSeeded] = useState(false);
+
+  useEffect(() => {
+    const initNotifications = async () => {
+      const granted = await requestNotificationPermission();
+      if (granted) {
+        scheduleNotifications();
+      }
+    };
+
+    initNotifications();
+  }, []);
 
   useEffect(() => {
     const initData = async () => {

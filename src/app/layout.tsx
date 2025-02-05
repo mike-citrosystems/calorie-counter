@@ -2,11 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
-import {
-  AiOutlineHome,
-  AiOutlineShoppingCart,
-  AiOutlinePlus,
-} from "react-icons/ai";
+import { AiOutlineHome, AiOutlineShoppingCart } from "react-icons/ai";
 import { BsCalendar3 } from "react-icons/bs";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -44,16 +40,6 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <main className="pb-16">{children}</main>
-
-        <button
-          className="fixed right-4 bottom-20 bg-blue-500 hover:bg-blue-600 text-white rounded-full p-4 shadow-lg transition-all duration-200 hover:scale-110 z-10"
-          aria-label="Add new item"
-          onClick={() => {
-            /* Add your handler here */
-          }}
-        >
-          <AiOutlinePlus className="text-2xl" />
-        </button>
 
         <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
           <div className="max-w-md mx-auto px-4">

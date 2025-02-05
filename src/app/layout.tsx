@@ -41,7 +41,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <main className="pb-16">{children}</main>
 
-        <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-4">
+        <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-5">
           <div className="max-w-md mx-auto px-4">
             <ul className="flex items-center justify-around py-3">
               <li>

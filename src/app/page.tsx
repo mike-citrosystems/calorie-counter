@@ -43,7 +43,7 @@ export default function Home() {
         (entry) => entry.timestamp >= dayStart && entry.timestamp <= dayEnd
       );
 
-      setEntries(todayEntries.sort((a, b) => b.timestamp - a.timestamp));
+      setEntries(todayEntries.sort((a, b) => a.timestamp - b.timestamp));
       setCalories(todayEntries.reduce((sum, entry) => sum + entry.calories, 0));
     } catch (error) {
       console.error("Failed to load today's data:", error);

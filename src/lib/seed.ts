@@ -129,9 +129,9 @@ export async function seedDatabase() {
       return generateDayEntries(date);
     }).flat();
 
-    // Add all entries
+    // Add all entries with their timestamps
     for (const entry of twoWeeksEntries) {
-      await db.addCalories(entry.calories, entry.description);
+      await db.addCalories(entry.calories, entry.description, entry.timestamp);
     }
 
     console.log("✅ Database seeded successfully");

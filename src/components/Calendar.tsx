@@ -7,11 +7,12 @@ import {
   addDays,
   startOfMonth,
   endOfMonth,
-  eachDayOfInterval,
   isSameMonth,
   isSameDay,
   isToday,
   endOfWeek,
+  addMonths,
+  subMonths,
 } from "date-fns";
 
 interface CalendarProps {
@@ -25,14 +26,14 @@ export default function Calendar({
 }: CalendarProps) {
   const [currentMonth, setCurrentMonth] = useState(new Date());
 
-  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(monthStart);
   const startDate = startOfWeek(monthStart);
   const endDate = endOfWeek(monthEnd);
 
   const dateFormat = "MMMM yyyy";
-  const rows = [];
+  const weeks = [];
+  let days = [];
   let day = startDate;
 
   // Calendar header with days
@@ -42,37 +43,36 @@ export default function Calendar({
     </div>
   ));
 
-  // Calendar cells
+  // Generate calendar cells
   while (day <= endDate) {
     for (let i = 0; i < 7; i++) {
-      const cloneDay = day;
+      const cloneDay = new Date(day);
       days.push(
         <button
           key={day.toString()}
           onClick={() => onSelectDate(cloneDay)}
           className={`
-            relative w-full pt-[100%] border border-gray-100
+            relative w-full aspect-square flex items-center justify-center
             ${!isSameMonth(day, monthStart) ? "text-gray-300" : ""}
             ${
               isSameDay(day, selectedDate)
-                ? "bg-blue-500 text-white"
-                : "hover:bg-gray-50"
+                ? "bg-blue-500 text-white rounded-full"
+                : "hover:bg-gray-50 rounded-full"
             }
             ${isToday(day) ? "font-bold" : ""}
           `}
         >
-          <span className="absolute top-1 right-1 text-sm">
-            {format(day, "d")}
-          </span>
+          {format(day, "d")}
         </button>
       );
       day = addDays(day, 1);
     }
-    rows.push(
-      <div key={day.toString()} className="grid grid-cols-7 gap-px">
+    weeks.push(
+      <div key={days[0].key} className="grid grid-cols-7">
         {days}
       </div>
     );
+    days = [];
   }
 
   return (
@@ -81,6 +81,7 @@ export default function Calendar({
         <button
           onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
           className="p-2 hover:bg-gray-100 rounded-full"
+          aria-label="Previous month"
         >
           <ChevronLeftIcon className="w-5 h-5" />
         </button>
@@ -88,12 +89,13 @@ export default function Calendar({
         <button
           onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
           className="p-2 hover:bg-gray-100 rounded-full"
+          aria-label="Next month"
         >
           <ChevronRightIcon className="w-5 h-5" />
         </button>
       </div>
-      <div className="grid grid-cols-7 gap-px mb-2">{daysHeader}</div>
-      <div className="space-y-px">{rows}</div>
+      <div className="grid grid-cols-7 mb-2">{daysHeader}</div>
+      <div className="space-y-1">{weeks}</div>
     </div>
   );
 }

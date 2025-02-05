@@ -43,7 +43,8 @@ class CaloriesDB {
 
   async addCalories(
     calories: number,
-    description: string
+    description: string,
+    timestamp?: number
   ): Promise<CalorieEntry> {
     const db = await this.init();
     return new Promise((resolve, reject) => {
@@ -53,7 +54,7 @@ class CaloriesDB {
       const entry: CalorieEntry = {
         calories,
         description,
-        timestamp: Date.now(),
+        timestamp: timestamp || Date.now(),
       };
 
       const request = store.add(entry);

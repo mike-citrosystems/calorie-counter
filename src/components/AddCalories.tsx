@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { format } from "date-fns";
+import SearchableSelect from "./SearchableSelect";
+import db from "@/lib/db";
 
 interface AddCaloriesProps {
   onAdd: (calories: number, description: string, timestamp?: number) => void;
@@ -25,6 +27,39 @@ export default function AddCalories({ onAdd }: AddCaloriesProps) {
   const [customDate, setCustomDate] = useState(
     format(new Date(), "yyyy-MM-dd'T'HH:mm")
   );
+  const [pastEntries, setPastEntries] = useState<
+    Array<{
+      description: string;
+      calories: number;
+    }>
+  >([]);
+
+  useEffect(() => {
+    const loadPastEntries = async () => {
+      try {
+        const entries = await db.getAllEntries();
+        const processedEntries = entries.map((entry) => ({
+          description: entry.description.replace(/^\[(.*?)\]\s*/, ""),
+          calories: entry.calories,
+        }));
+
+        // Remove duplicates by description
+        const uniqueEntries = Array.from(
+          new Map(
+            processedEntries.map((entry) => [entry.description, entry])
+          ).values()
+        );
+
+        setPastEntries(uniqueEntries);
+      } catch (error) {
+        console.error("Failed to load past entries:", error);
+      }
+    };
+
+    if (isOpen) {
+      loadPastEntries();
+    }
+  }, [isOpen]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,6 +80,16 @@ export default function AddCalories({ onAdd }: AddCaloriesProps) {
     setCategory("snack");
     setUseCustomDate(false);
     setCustomDate(format(new Date(), "yyyy-MM-dd'T'HH:mm"));
+  };
+
+  const handleDescriptionChange = (
+    newDescription: string,
+    calories?: number
+  ) => {
+    setDescription(newDescription);
+    if (calories) {
+      setCalories(calories.toString());
+    }
   };
 
   if (!isOpen) {
@@ -97,14 +142,11 @@ export default function AddCalories({ onAdd }: AddCaloriesProps) {
             >
               Description
             </label>
-            <input
-              type="text"
-              id="description"
+            <SearchableSelect
+              items={pastEntries}
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              onChange={handleDescriptionChange}
               placeholder="What did you eat?"
-              required
             />
           </div>
 

@@ -41,16 +41,15 @@ export default function RootLayout({
       <body className={inter.className}>
         <main className="pb-16">{children}</main>
 
-        <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
+        <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-4">
           <div className="max-w-md mx-auto px-4">
-            <ul className="flex items-center justify-center gap-16 py-3">
+            <ul className="flex items-center justify-around py-3">
               <li>
                 <Link
                   href="/planner"
                   className="flex flex-col items-center text-gray-600 hover:text-blue-500"
                 >
                   <BsCalendar3 className="text-2xl" />
-                  <span className="text-xs mt-1">Planner</span>
                 </Link>
               </li>
               <li>
@@ -59,7 +58,6 @@ export default function RootLayout({
                   className="flex flex-col items-center text-gray-600 hover:text-blue-500"
                 >
                   <AiOutlineHome className="text-2xl" />
-                  <span className="text-xs mt-1">Home</span>
                 </Link>
               </li>
               <li>
@@ -68,7 +66,6 @@ export default function RootLayout({
                   className="flex flex-col items-center text-gray-600 hover:text-blue-500"
                 >
                   <AiOutlineShoppingCart className="text-2xl" />
-                  <span className="text-xs mt-1">Cart</span>
                 </Link>
               </li>
             </ul>

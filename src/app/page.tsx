@@ -23,6 +23,7 @@ export default function Home() {
   const [calories, setCalories] = useState(0);
   const [entries, setEntries] = useState<CalorieEntry[]>([]);
   const [isSeeded, setIsSeeded] = useState(false);
+  const [calorieLimit, setCalorieLimit] = useState(3000);
 
   useEffect(() => {
     const initNotifications = async () => {
@@ -41,6 +42,8 @@ export default function Home() {
         await seedDatabase();
         setIsSeeded(true);
       }
+      const limit = await db.getCalorieLimit();
+      setCalorieLimit(limit);
       await loadTodayData();
     };
 
@@ -91,7 +94,11 @@ export default function Home() {
             <h2 className="text-lg font-semibold">Today&apos;s Calories</h2>
             <AddCalories onAdd={handleAddCalories} />
           </div>
-          <ProgressBar limit={3000} currentValue={calories} color="green" />
+          <ProgressBar
+            limit={calorieLimit}
+            currentValue={calories}
+            onLimitChange={setCalorieLimit}
+          />
         </div>
 
         <div className="bg-white rounded-lg shadow-md p-4">

@@ -7,8 +7,9 @@ type CalorieEntry = {
 
 class CaloriesDB {
   private dbName = "calories-tracker";
-  private version = 2;
+  private version = 3;
   private storeName = "calories";
+  private settingsStore = "settings";
 
   async init(): Promise<IDBDatabase> {
     return new Promise((resolve, reject) => {
@@ -25,18 +26,20 @@ class CaloriesDB {
       request.onupgradeneeded = (event) => {
         const db = (event.target as IDBOpenDBRequest).result;
 
-        // If store exists, delete it to recreate with new schema
-        if (db.objectStoreNames.contains(this.storeName)) {
-          db.deleteObjectStore(this.storeName);
+        // Create settings store if it doesn't exist
+        if (!db.objectStoreNames.contains(this.settingsStore)) {
+          db.createObjectStore(this.settingsStore, { keyPath: "id" });
         }
 
-        const store = db.createObjectStore(this.storeName, {
-          keyPath: "id",
-          autoIncrement: true,
-        });
-        // Create indexes for querying
-        store.createIndex("timestamp", "timestamp", { unique: false });
-        store.createIndex("description", "description", { unique: false });
+        // Handle calories store
+        if (!db.objectStoreNames.contains(this.storeName)) {
+          const store = db.createObjectStore(this.storeName, {
+            keyPath: "id",
+            autoIncrement: true,
+          });
+          store.createIndex("timestamp", "timestamp", { unique: false });
+          store.createIndex("description", "description", { unique: false });
+        }
       };
     });
   }
@@ -162,6 +165,39 @@ class CaloriesDB {
       request.onerror = () => {
         reject(request.error);
       };
+
+      transaction.oncomplete = () => {
+        db.close();
+      };
+    });
+  }
+
+  async getCalorieLimit(): Promise<number> {
+    const db = await this.init();
+    return new Promise((resolve) => {
+      const transaction = db.transaction("settings", "readonly");
+      const store = transaction.objectStore("settings");
+      const request = store.get("calorieLimit");
+
+      request.onsuccess = () => {
+        resolve(request.result?.value || 3000); // Default to 3000 if not set
+      };
+
+      transaction.oncomplete = () => {
+        db.close();
+      };
+    });
+  }
+
+  async setCalorieLimit(limit: number): Promise<void> {
+    const db = await this.init();
+    return new Promise((resolve, reject) => {
+      const transaction = db.transaction("settings", "readwrite");
+      const store = transaction.objectStore("settings");
+      const request = store.put({ id: "calorieLimit", value: limit });
+
+      request.onsuccess = () => resolve();
+      request.onerror = () => reject(request.error);
 
       transaction.oncomplete = () => {
         db.close();

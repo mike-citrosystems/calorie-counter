@@ -17,11 +17,17 @@ export const metadata: Metadata = {
     initialScale: 1,
     maximumScale: 1,
     userScalable: false,
+    viewportFit: "cover",
   },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "My Application",
+    title: "Meal Helper",
+    startupImage: ["/splash.png"],
+  },
+  other: {
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "black-translucent",
   },
 };
 
@@ -41,7 +47,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <main className="pb-16">{children}</main>
 
-        <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-4">
+        <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-4 bottom-nav">
           <div className="max-w-md mx-auto px-4">
             <ul className="flex items-center justify-around py-3">
               <li>

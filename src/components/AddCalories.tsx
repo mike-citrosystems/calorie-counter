@@ -1,92 +1,181 @@
 "use client";
 
 import { useState } from "react";
-import { PiPaperPlaneTiltBold } from "react-icons/pi";
+import { format } from "date-fns";
 
 interface AddCaloriesProps {
-  onAdd: (calories: number, description: string) => void;
+  onAdd: (calories: number, description: string, timestamp?: number) => void;
 }
+
+const CATEGORIES = [
+  { id: "breakfast", label: "Breakfast" },
+  { id: "lunch", label: "Lunch" },
+  { id: "dinner", label: "Dinner" },
+  { id: "snack", label: "Snack" },
+] as const;
+
+type Category = (typeof CATEGORIES)[number]["id"];
 
 export default function AddCalories({ onAdd }: AddCaloriesProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [calories, setCalories] = useState("");
   const [description, setDescription] = useState("");
+  const [calories, setCalories] = useState("");
+  const [category, setCategory] = useState<Category>("snack");
+  const [useCustomDate, setUseCustomDate] = useState(false);
+  const [customDate, setCustomDate] = useState(
+    format(new Date(), "yyyy-MM-dd'T'HH:mm")
+  );
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (calories && description.trim()) {
-      onAdd(Number(calories), description.trim());
-      setCalories("");
-      setDescription("");
-      setIsOpen(false);
-    }
+    if (!description || !calories) return;
+
+    const timestamp = useCustomDate
+      ? new Date(customDate).getTime()
+      : undefined;
+
+    const fullDescription = `[${
+      CATEGORIES.find((c) => c.id === category)?.label
+    }] ${description}`;
+
+    onAdd(Number(calories), fullDescription, timestamp);
+    setIsOpen(false);
+    setDescription("");
+    setCalories("");
+    setCategory("snack");
+    setUseCustomDate(false);
+    setCustomDate(format(new Date(), "yyyy-MM-dd'T'HH:mm"));
   };
 
-  return (
-    <div className="relative inline-block">
+  if (!isOpen) {
+    return (
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="bg-blue-500 hover:bg-blue-600 text-white rounded-full p-2 shadow-lg transition-all duration-200"
+        onClick={() => setIsOpen(true)}
+        className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
         aria-label="Add calories"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={2}
-          stroke="currentColor"
-          className="w-5 h-5"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M12 4.5v15m7.5-7.5h-15"
-          />
-        </svg>
+        Add Entry
       </button>
+    );
+  }
 
-      {isOpen && (
-        <>
-          <div
-            className="fixed inset-0 bg-black/20 flex items-center justify-center"
-            onClick={() => setIsOpen(false)}
-          >
-            <div
-              className="bg-white rounded-lg shadow-xl p-4 min-w-[300px] z-50"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <input
-                    type="text"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="What did you eat?"
-                    autoFocus
-                  />
-                </div>
-                <div className="flex gap-2">
-                  <input
-                    type="number"
-                    value={calories}
-                    onChange={(e) => setCalories(e.target.value)}
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Calories"
-                  />
-                  <button
-                    type="submit"
-                    className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg p-2 transition-colors duration-200"
-                    aria-label="Submit calories"
-                  >
-                    <PiPaperPlaneTiltBold className="w-5 h-5" />
-                  </button>
-                </div>
-              </form>
+  return (
+    <>
+      <div
+        className="fixed inset-0 bg-black bg-opacity-50 z-40"
+        onClick={() => setIsOpen(false)}
+        role="presentation"
+      />
+      <div className="fixed inset-x-0 bottom-0 bg-white rounded-t-xl p-4 z-50 max-h-[90vh] overflow-y-auto">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Category
+            </label>
+            <div className="grid grid-cols-2 gap-2">
+              {CATEGORIES.map((cat) => (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => setCategory(cat.id)}
+                  className={`py-2 px-4 rounded-lg border ${
+                    category === cat.id
+                      ? "bg-blue-500 text-white border-blue-500"
+                      : "border-gray-300 text-gray-700 hover:bg-gray-50"
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              ))}
             </div>
           </div>
-        </>
-      )}
-    </div>
+
+          <div>
+            <label
+              htmlFor="description"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              Description
+            </label>
+            <input
+              type="text"
+              id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="What did you eat?"
+              required
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="calories"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              Calories
+            </label>
+            <input
+              type="number"
+              id="calories"
+              value={calories}
+              onChange={(e) => setCalories(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Calories"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                checked={useCustomDate}
+                onChange={(e) => setUseCustomDate(e.target.checked)}
+                className="rounded text-blue-500 focus:ring-blue-500"
+              />
+              <span className="text-sm text-gray-700">
+                Set custom date and time
+              </span>
+            </label>
+          </div>
+
+          {useCustomDate && (
+            <div>
+              <label
+                htmlFor="datetime"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Date and Time
+              </label>
+              <input
+                type="datetime-local"
+                id="datetime"
+                value={customDate}
+                onChange={(e) => setCustomDate(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          )}
+
+          <div className="flex space-x-3">
+            <button
+              type="button"
+              onClick={() => setIsOpen(false)}
+              className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="flex-1 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+              aria-label="Submit calories"
+            >
+              Add Entry
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 }

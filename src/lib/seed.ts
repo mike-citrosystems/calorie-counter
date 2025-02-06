@@ -143,9 +143,7 @@ function generateDayEntries(date: Date) {
 }
 
 export async function seedDatabase() {
-  if (process.env.NODE_ENV !== "development") {
-    return;
-  }
+  return;
 
   try {
     // Clear existing data

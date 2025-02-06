@@ -17,10 +17,17 @@ export default function Settings() {
         data.map(async (entry) => {
           if (entry.imageUrl) {
             const imageBlob = await db.getImage(entry.imageUrl);
-            return {
-              ...entry,
-              imageBlob: imageBlob ? await imageBlob.arrayBuffer() : null,
-            };
+            if (imageBlob) {
+              // Convert blob to base64
+              const buffer = await imageBlob.arrayBuffer();
+              const base64 = btoa(
+                new Uint8Array(buffer).reduce(
+                  (data, byte) => data + String.fromCharCode(byte),
+                  ""
+                )
+              );
+              return { ...entry, imageData: base64 };
+            }
           }
           return entry;
         })
@@ -74,18 +81,22 @@ export default function Settings() {
         await db.clearAllData();
 
         for (const entry of backup.entries) {
-          const { imageBlob, ...entryData } = entry;
+          const { imageData, ...entryData } = entry;
           let imageUrl = undefined;
 
-          if (imageBlob) {
+          if (imageData) {
             try {
-              const blob = new Blob([new Uint8Array(imageBlob)], {
-                type: "image/jpeg",
-              });
+              // Convert base64 back to blob
+              const binaryString = atob(imageData);
+              const bytes = new Uint8Array(binaryString.length);
+              for (let i = 0; i < binaryString.length; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+              }
+              const blob = new Blob([bytes], { type: "image/jpeg" });
+
               const imageId = crypto.randomUUID();
               await db.storeImage(imageId, blob);
               imageUrl = imageId;
-              console.log("Restored image:", imageId);
             } catch (error) {
               console.error("Failed to restore image:", error);
             }

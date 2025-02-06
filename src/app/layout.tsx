@@ -37,8 +37,8 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       </head>
-      <body className={inter.className}>
-        <main className="pb-16">{children}</main>
+      <body className={`${inter.className} fixed inset-0 overflow-hidden`}>
+        <main className="h-full overflow-auto pb-16">{children}</main>
 
         <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white shadow-lg rounded-full px-6 py-2 flex gap-6">
           <Link

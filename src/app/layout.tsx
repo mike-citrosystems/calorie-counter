@@ -36,6 +36,18 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+        <style>
+          {`
+            html, body {
+              touch-action: pan-x pan-y;
+              -webkit-touch-callout: none;
+            }
+          `}
+        </style>
       </head>
       <body className={`${inter.className} fixed inset-0 overflow-hidden`}>
         <main className="h-full overflow-auto pb-16">{children}</main>

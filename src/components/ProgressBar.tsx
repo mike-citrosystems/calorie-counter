@@ -37,9 +37,10 @@ export default function ProgressBar({
   return (
     <div className="w-full relative">
       <div className="flex justify-between mb-1 text-sm items-center">
-        <span>{currentValue} cal</span>
+        <div className="text-2xl font-bold mb-2">
+          {currentValue} / {limit} cal
+        </div>
         <div className="flex items-center gap-2">
-          <span>{limit} cal</span>
           <button
             onClick={() => setIsSettingsOpen(true)}
             className="p-1 hover:bg-gray-100 rounded-full"

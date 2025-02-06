@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
-import { AiOutlineHome, AiOutlineShoppingCart } from "react-icons/ai";
-import { BsCalendar3 } from "react-icons/bs";
+import { IoHomeOutline, IoCalendarOutline } from "react-icons/io5";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -41,35 +40,19 @@ export default function RootLayout({
       <body className={inter.className}>
         <main className="pb-16">{children}</main>
 
-        <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-5">
-          <div className="max-w-md mx-auto px-4">
-            <ul className="flex items-center justify-around py-3">
-              <li>
-                <Link
-                  href="/planner"
-                  className="flex flex-col items-center text-gray-600 hover:text-blue-500"
-                >
-                  <BsCalendar3 className="text-2xl" />
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/"
-                  className="flex flex-col items-center text-gray-600 hover:text-blue-500"
-                >
-                  <AiOutlineHome className="text-2xl" />
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/cart"
-                  className="flex flex-col items-center text-gray-600 hover:text-blue-500"
-                >
-                  <AiOutlineShoppingCart className="text-2xl" />
-                </Link>
-              </li>
-            </ul>
-          </div>
+        <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white shadow-lg rounded-full px-6 py-2 flex gap-6">
+          <Link
+            href="/"
+            className={`p-2 text-gray-500 hover:text-blue-500 transition-colors`}
+          >
+            <IoHomeOutline className="w-6 h-6" />
+          </Link>
+          <Link
+            href="/history"
+            className={`p-2 text-gray-500 hover:text-blue-500 transition-colors`}
+          >
+            <IoCalendarOutline className="w-6 h-6" />
+          </Link>
         </nav>
         <script
           dangerouslySetInnerHTML={{

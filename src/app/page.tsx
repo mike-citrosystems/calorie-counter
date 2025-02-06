@@ -92,20 +92,23 @@ export default function Home() {
   };
 
   return (
-    <div className="space-y-6 p-4">
-      <div className="space-y-4">
-        <div className="bg-white rounded-lg p-4 shadow-md">
+    <div className="space-y-6">
+      <div className="sticky top-0 bg-white shadow-md">
+        <div className="p-4">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="text-lg font-semibold">Today&apos;s Calories</h2>
+            <h2 className="text-xl font-semibold">Today&apos;s Calories</h2>
             <AddCalories onAdd={handleAddCalories} />
           </div>
+
           <ProgressBar
             limit={calorieLimit}
             currentValue={calories}
             onLimitChange={setCalorieLimit}
           />
         </div>
+      </div>
 
+      <div className="p-4">
         <div className="bg-white rounded-lg shadow-md p-4">
           <EntryList
             entries={entries}

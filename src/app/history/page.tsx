@@ -42,20 +42,29 @@ export default function PlannerPage() {
   };
 
   return (
-    <div className="p-4 space-y-4">
-      <Calendar onSelectDate={setSelectedDate} selectedDate={selectedDate} />
-
-      <div className="bg-white rounded-lg shadow-md p-4">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-lg font-semibold">
-            {format(selectedDate, "MMMM d, yyyy")}
-          </h2>
-          <span className="text-lg font-semibold text-blue-500">
-            {totalCalories} cal
-          </span>
+    <div>
+      <div className="sticky top-0 bg-white shadow-md z-10">
+        <div className="p-4">
+          <Calendar
+            onSelectDate={setSelectedDate}
+            selectedDate={selectedDate}
+          />
         </div>
+      </div>
 
-        <EntryList entries={entries} showDate={false} />
+      <div className="p-4">
+        <div className="bg-white rounded-lg shadow-md p-4">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-lg font-semibold">
+              {format(selectedDate, "MMMM d, yyyy")}
+            </h2>
+            <span className="text-lg font-semibold text-blue-500">
+              {totalCalories} cal
+            </span>
+          </div>
+
+          <EntryList entries={entries} showDate={false} />
+        </div>
       </div>
     </div>
   );

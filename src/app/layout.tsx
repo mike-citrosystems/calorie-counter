@@ -6,6 +6,7 @@ import {
   IoHomeOutline,
   IoCalendarOutline,
   IoSettingsOutline,
+  IoListOutline,
 } from "react-icons/io5";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -68,6 +69,12 @@ export default function RootLayout({
             className={`p-2 text-gray-500 hover:text-blue-500 transition-colors`}
           >
             <IoCalendarOutline className="w-6 h-6" />
+          </Link>
+          <Link
+            href="/planner"
+            className={`p-2 text-gray-500 hover:text-blue-500 transition-colors`}
+          >
+            <IoListOutline className="w-6 h-6" />
           </Link>
           <Link
             href="/settings"

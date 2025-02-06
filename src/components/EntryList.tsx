@@ -82,9 +82,7 @@ export default function EntryList({
                       {category}
                     </span>
                   )}
-                  <h3 className="text-sm text-gray-900 truncate">
-                    {cleanDescription}
-                  </h3>
+                  <h3 className="flex-1 min-w-0">{cleanDescription}</h3>
                 </div>
               </div>
               <p className="text-xs text-gray-500 mt-1">

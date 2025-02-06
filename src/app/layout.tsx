@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
-import { IoHomeOutline, IoCalendarOutline } from "react-icons/io5";
+import {
+  IoHomeOutline,
+  IoCalendarOutline,
+  IoSettingsOutline,
+} from "react-icons/io5";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -64,6 +68,12 @@ export default function RootLayout({
             className={`p-2 text-gray-500 hover:text-blue-500 transition-colors`}
           >
             <IoCalendarOutline className="w-6 h-6" />
+          </Link>
+          <Link
+            href="/settings"
+            className={`p-2 text-gray-500 hover:text-blue-500 transition-colors`}
+          >
+            <IoSettingsOutline className="w-6 h-6" />
           </Link>
         </nav>
         <script

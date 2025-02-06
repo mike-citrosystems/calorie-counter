@@ -63,16 +63,17 @@ class CaloriesDB {
     calories: number,
     description: string,
     timestamp?: number,
-    imageBlob?: Blob
+    imageBlob?: Blob,
+    imageUrl?: string
   ): Promise<CalorieEntry> {
     const db = await this.init();
-    let imageUrl: string | undefined;
+    let finalImageUrl = imageUrl;
 
     if (imageBlob) {
       console.log("Storing image blob:", imageBlob);
       const imageId = crypto.randomUUID();
       await this.storeImage(imageId, imageBlob);
-      imageUrl = imageId;
+      finalImageUrl = imageId;
     }
 
     return new Promise((resolve, reject) => {
@@ -83,7 +84,7 @@ class CaloriesDB {
         calories,
         description,
         timestamp: timestamp || Date.now(),
-        imageUrl,
+        imageUrl: finalImageUrl,
       };
 
       const request = store.add(entry);
@@ -104,7 +105,7 @@ class CaloriesDB {
   }
 
   async storeImage(id: string, blob: Blob): Promise<void> {
-    console.log("Attempting to store image", id, blob);
+    console.log("Storing image", id, blob.size);
     const db = await this.init();
     return new Promise((resolve, reject) => {
       try {
@@ -114,7 +115,7 @@ class CaloriesDB {
         const request = store.put({ id, blob });
 
         request.onsuccess = () => {
-          console.log("Image stored successfully");
+          console.log("Image stored successfully", id);
           resolve();
         };
 
@@ -123,14 +124,7 @@ class CaloriesDB {
           reject(request.error);
         };
 
-        transaction.oncomplete = () => {
-          console.log("Transaction completed");
-          db.close();
-        };
-
-        transaction.onerror = () => {
-          console.error("Transaction error:", transaction.error);
-        };
+        transaction.oncomplete = () => db.close();
       } catch (error) {
         console.error("Error in storeImage:", error);
         reject(error);
@@ -227,21 +221,24 @@ class CaloriesDB {
   async clearAllData(): Promise<void> {
     const db = await this.init();
     return new Promise((resolve, reject) => {
-      const transaction = db.transaction(this.storeName, "readwrite");
-      const store = transaction.objectStore(this.storeName);
-      const request = store.clear();
+      try {
+        // Clear both calories and images stores
+        const caloriesTransaction = db.transaction(this.storeName, "readwrite");
+        const imagesTransaction = db.transaction(this.imageStore, "readwrite");
 
-      request.onsuccess = () => {
-        resolve();
-      };
+        caloriesTransaction.objectStore(this.storeName).clear();
+        imagesTransaction.objectStore(this.imageStore).clear();
 
-      request.onerror = () => {
-        reject(request.error);
-      };
-
-      transaction.oncomplete = () => {
-        db.close();
-      };
+        Promise.all([
+          new Promise((res) => (caloriesTransaction.oncomplete = res)),
+          new Promise((res) => (imagesTransaction.oncomplete = res)),
+        ]).then(() => {
+          db.close();
+          resolve();
+        });
+      } catch (error) {
+        reject(error);
+      }
     });
   }
 

@@ -114,10 +114,6 @@ export default function AddCalories({ onAdd }: AddCaloriesProps) {
     }, 300);
   };
 
-  useEffect(() => {
-    return () => clearTimeout();
-  }, []);
-
   return (
     <>
       <button

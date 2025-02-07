@@ -4,7 +4,7 @@ import { format } from "date-fns";
 import { IoClose } from "react-icons/io5";
 import EntryImage from "./EntryImage";
 import { CalorieEntry } from "./EntryList";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 interface EntryDetailsProps {
   entry: CalorieEntry;
@@ -18,10 +18,6 @@ export default function EntryDetails({ entry, onClose }: EntryDetailsProps) {
     setIsClosing(true);
     setTimeout(onClose, 300); // Match animation duration
   };
-
-  useEffect(() => {
-    return () => clearTimeout();
-  }, []);
 
   const category = entry.description.match(/^\[(.*?)\]/)?.[1];
   const description = entry.description.replace(/^\[(.*?)\]\s*/, "");

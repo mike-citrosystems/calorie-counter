@@ -43,7 +43,7 @@ export default function PlannerPage() {
 
   return (
     <div>
-      <div className="sticky top-0 bg-white shadow-md z-10">
+      <div className="sticky top-0 z-10">
         <div className="p-4">
           <Calendar
             onSelectDate={setSelectedDate}

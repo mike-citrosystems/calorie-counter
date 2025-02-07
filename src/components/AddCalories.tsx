@@ -40,6 +40,7 @@ export default function AddCalories({ onAdd }: AddCaloriesProps) {
     }>
   >([]);
   const [imageBlob, setImageBlob] = useState<Blob | null>(null);
+  const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
     const loadPastEntries = async () => {
@@ -105,139 +106,156 @@ export default function AddCalories({ onAdd }: AddCaloriesProps) {
     }
   };
 
-  if (!isOpen) {
-    return (
-      <button
-        onClick={() => setIsOpen(true)}
-        className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
-        aria-label="Add calories"
-      >
-        Add Entry
-      </button>
-    );
-  }
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setIsOpen(false);
+      setIsClosing(false);
+    }, 300);
+  };
+
+  useEffect(() => {
+    return () => clearTimeout();
+  }, []);
 
   return (
     <>
-      <div
-        className="fixed inset-0 bg-black bg-opacity-50 z-40"
-        onClick={() => setIsOpen(false)}
-        role="presentation"
-      />
-      <div className="fixed inset-x-0 bottom-0 bg-white rounded-t-xl p-4 z-50 max-h-[90vh] overflow-y-auto">
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Category
-            </label>
-            <div className="grid grid-cols-2 gap-2">
-              {CATEGORIES.map((cat) => (
-                <button
-                  key={cat.id}
-                  type="button"
-                  onClick={() => setCategory(cat.id)}
-                  className={`py-2 px-4 rounded-lg border ${
-                    category === cat.id
-                      ? "bg-blue-500 text-white border-blue-500"
-                      : "border-gray-300 text-gray-700 hover:bg-gray-50"
-                  }`}
+      <button
+        onClick={() => setIsOpen(true)}
+        className="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+      >
+        Add Entry
+      </button>
+
+      {isOpen && (
+        <>
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 z-50 transition-opacity duration-300"
+            onClick={handleClose}
+          />
+          <div
+            className={`
+              fixed inset-x-0 bottom-0 bg-white rounded-t-xl p-4 z-50 
+              max-h-[90vh] overflow-y-auto
+              transition-transform duration-300 ease-out
+              ${isClosing ? "animate-slide-down" : "animate-slide-up"}
+            `}
+          >
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Category
+                </label>
+                <div className="grid grid-cols-2 gap-2">
+                  {CATEGORIES.map((cat) => (
+                    <button
+                      key={cat.id}
+                      type="button"
+                      onClick={() => setCategory(cat.id)}
+                      className={`py-2 px-4 rounded-lg border ${
+                        category === cat.id
+                          ? "bg-blue-500 text-white border-blue-500"
+                          : "border-gray-300 text-gray-700 hover:bg-gray-50"
+                      }`}
+                    >
+                      {cat.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="description"
+                  className="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  {cat.label}
+                  Description
+                </label>
+                <SearchableSelect
+                  items={pastEntries}
+                  value={description}
+                  onChange={handleDescriptionChange}
+                  placeholder="What did you eat?"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="calories"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Calories
+                </label>
+                <input
+                  type="number"
+                  id="calories"
+                  value={calories}
+                  onChange={(e) => setCalories(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Calories"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    checked={useCustomDate}
+                    onChange={(e) => setUseCustomDate(e.target.checked)}
+                    className="rounded text-blue-500 focus:ring-blue-500"
+                  />
+                  <span className="text-sm text-gray-700">
+                    Set custom date and time
+                  </span>
+                </label>
+              </div>
+
+              {useCustomDate && (
+                <div>
+                  <label
+                    htmlFor="datetime"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Date and Time
+                  </label>
+                  <input
+                    type="datetime-local"
+                    id="datetime"
+                    value={customDate}
+                    onChange={(e) => setCustomDate(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+              )}
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Photo
+                </label>
+                <ImageCapture onCapture={setImageBlob} />
+              </div>
+
+              <div className="flex space-x-3">
+                <button
+                  type="button"
+                  onClick={() => setIsOpen(false)}
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50"
+                >
+                  Cancel
                 </button>
-              ))}
-            </div>
+                <button
+                  type="submit"
+                  className="flex-1 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                  aria-label="Submit calories"
+                >
+                  Add Entry
+                </button>
+              </div>
+            </form>
           </div>
-
-          <div>
-            <label
-              htmlFor="description"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              Description
-            </label>
-            <SearchableSelect
-              items={pastEntries}
-              value={description}
-              onChange={handleDescriptionChange}
-              placeholder="What did you eat?"
-            />
-          </div>
-
-          <div>
-            <label
-              htmlFor="calories"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              Calories
-            </label>
-            <input
-              type="number"
-              id="calories"
-              value={calories}
-              onChange={(e) => setCalories(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Calories"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                checked={useCustomDate}
-                onChange={(e) => setUseCustomDate(e.target.checked)}
-                className="rounded text-blue-500 focus:ring-blue-500"
-              />
-              <span className="text-sm text-gray-700">
-                Set custom date and time
-              </span>
-            </label>
-          </div>
-
-          {useCustomDate && (
-            <div>
-              <label
-                htmlFor="datetime"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Date and Time
-              </label>
-              <input
-                type="datetime-local"
-                id="datetime"
-                value={customDate}
-                onChange={(e) => setCustomDate(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-          )}
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Photo
-            </label>
-            <ImageCapture onCapture={setImageBlob} />
-          </div>
-
-          <div className="flex space-x-3">
-            <button
-              type="button"
-              onClick={() => setIsOpen(false)}
-              className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="flex-1 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-              aria-label="Submit calories"
-            >
-              Add Entry
-            </button>
-          </div>
-        </form>
-      </div>
+        </>
+      )}
     </>
   );
 }

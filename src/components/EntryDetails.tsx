@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import { IoClose } from "react-icons/io5";
 import EntryImage from "./EntryImage";
 import { CalorieEntry } from "./EntryList";
+import { useState, useEffect } from "react";
 
 interface EntryDetailsProps {
   entry: CalorieEntry;
@@ -11,21 +12,39 @@ interface EntryDetailsProps {
 }
 
 export default function EntryDetails({ entry, onClose }: EntryDetailsProps) {
+  const [isClosing, setIsClosing] = useState(false);
+
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(onClose, 300); // Match animation duration
+  };
+
+  useEffect(() => {
+    return () => clearTimeout();
+  }, []);
+
   const category = entry.description.match(/^\[(.*?)\]/)?.[1];
   const description = entry.description.replace(/^\[(.*?)\]\s*/, "");
 
   return (
     <>
       <div
-        className="fixed inset-0 bg-black bg-opacity-50 z-40"
-        onClick={onClose}
+        className="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300"
+        onClick={handleClose}
       />
-      <div className="fixed inset-x-0 bottom-0 bg-white rounded-t-xl p-4 z-50 max-h-[80vh] overflow-y-auto">
+      <div
+        className={`
+          fixed inset-x-0 bottom-0 bg-white rounded-t-xl p-4 z-50 
+          max-h-[80vh] overflow-y-auto
+          transition-transform duration-300 ease-out
+          ${isClosing ? "animate-slide-down" : "animate-slide-up"}
+        `}
+      >
         <div className="space-y-4">
           <div className="flex justify-between items-center">
             <h2 className="text-lg font-semibold">Entry Details</h2>
             <button
-              onClick={onClose}
+              onClick={handleClose}
               className="p-1 hover:bg-gray-100 rounded-full"
             >
               <IoClose className="w-6 h-6" />

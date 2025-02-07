@@ -24,7 +24,7 @@ export default function EntryImage({ imageId }: { imageId: string }) {
   if (!imageUrl) return null;
 
   return (
-    <div className="relative w-full h-full">
+    <div className="relative w-full h-32">
       <Image
         src={imageUrl}
         alt="Entry"

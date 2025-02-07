@@ -81,7 +81,7 @@ export default function ImageCapture({ onCapture }: ImageCaptureProps) {
 
       {previewUrl && (
         <div className="relative">
-          <div className="relative w-full h-full">
+          <div className="relative w-full h-32">
             <Image
               src={previewUrl}
               alt="Preview"

@@ -19,7 +19,8 @@ export default function EntryImage({ imageId }: { imageId: string }) {
     return () => {
       if (imageUrl) URL.revokeObjectURL(imageUrl);
     };
-  }, [imageId, imageUrl]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [imageId]);
 
   if (!imageUrl) return null;
 

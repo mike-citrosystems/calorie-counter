@@ -7,7 +7,8 @@
   {
     "category": "Snacks & Small Bites",
     "label": "Almonds and dark chocolate",
-    "id": "almonds-dark-chocolate"
+    "id": "almonds-dark-chocolate",
+    "src": "/menu/featured-almonds-dark-chocolate-recipe.jpg"
   },
   {
     "category": "Snacks & Small Bites",
@@ -183,7 +184,8 @@
   {
     "category": "Breakfast & Brunch",
     "label": "Egg and cheese sandwich on a bagel",
-    "id": "egg-cheese-sandwich-bagel"
+    "id": "egg-cheese-sandwich-bagel",
+    "src": "/menu/featured-egg-cheese-sandwich-bagel-recipe.jpg"
   },
   {
     "category": "Breakfast & Brunch",
@@ -204,5 +206,86 @@
     "category": "Breakfast & Brunch",
     "label": "Smoothies (banana, spinach, protein powder, almond milk)",
     "id": "smoothies-banana-spinach-protein"
+  },
+  {
+    "category": "Side Dishes",
+    "label": "Steamed white rice",
+    "id": "steamed-white-rice",
+    "src": "/menu/featured-steamed-rice-recipe.jpg"
+  },
+  {
+    "category": "Side Dishes",
+    "label": "Brown rice pilaf with herbs",
+    "id": "brown-rice-pilaf"
+  },
+  {
+    "category": "Side Dishes",
+    "label": "Roasted seasonal vegetables",
+    "id": "roasted-seasonal-vegetables"
+  },
+  {
+    "category": "Side Dishes",
+    "label": "Garlic mashed potatoes",
+    "id": "garlic-mashed-potatoes"
+  },
+  {
+    "category": "Side Dishes",
+    "label": "Sweet potato fries",
+    "id": "sweet-potato-fries"
+  },
+  {
+    "category": "Side Dishes",
+    "label": "Quinoa with roasted vegetables",
+    "id": "quinoa-roasted-vegetables"
+  },
+  {
+    "category": "Side Dishes",
+    "label": "Steamed broccoli with garlic",
+    "id": "steamed-broccoli-garlic"
+  },
+  {
+    "category": "Side Dishes",
+    "label": "Grilled asparagus",
+    "id": "grilled-asparagus"
+  },
+  {
+    "category": "Side Dishes",
+    "label": "Couscous with herbs and pine nuts",
+    "id": "couscous-herbs-pine-nuts"
+  },
+  {
+    "category": "Side Dishes",
+    "label": "Roasted Brussels sprouts with balsamic",
+    "id": "roasted-brussels-sprouts"
+  },
+  {
+    "category": "Side Dishes",
+    "label": "Greek-style lemon potatoes",
+    "id": "greek-lemon-potatoes"
+  },
+  {
+    "category": "Side Dishes",
+    "label": "Sautéed green beans with almonds",
+    "id": "sauteed-green-beans-almonds"
+  },
+  {
+    "category": "Side Dishes",
+    "label": "Cauliflower rice",
+    "id": "cauliflower-rice"
+  },
+  {
+    "category": "Side Dishes",
+    "label": "Roasted root vegetables medley",
+    "id": "roasted-root-vegetables"
+  },
+  {
+    "category": "Side Dishes",
+    "label": "Asian-style stir-fried vegetables",
+    "id": "stir-fried-vegetables"
+  },
+  {
+    "category": "Side Dishes",
+    "label": "Creamed spinach",
+    "id": "creamed-spinach"
   }
 ]

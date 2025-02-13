@@ -429,5 +429,81 @@
     "category": "Fruits & Berries",
     "label": "Pomegranate seeds",
     "id": "pomegranate-seeds"
+  },
+  {
+    "category": "Easy Meals & Quick Bites",
+    "label": "Instant ramen with egg and vegetables",
+    "id": "instant-ramen-plus",
+    "src": "/menu/featured-ramen-egg.jpg"
+  },
+  {
+    "category": "Easy Meals & Quick Bites",
+    "label": "Microwave baked potato with toppings",
+    "id": "microwave-baked-potato"
+  },
+  {
+    "category": "Easy Meals & Quick Bites",
+    "label": "Frozen pizza",
+    "id": "frozen-pizza"
+  },
+  {
+    "category": "Easy Meals & Quick Bites",
+    "label": "Mac and cheese",
+    "id": "mac-and-cheese"
+  },
+  {
+    "category": "Easy Meals & Quick Bites",
+    "label": "Canned soup with crackers",
+    "id": "canned-soup-crackers"
+  },
+  {
+    "category": "Easy Meals & Quick Bites",
+    "label": "Peanut butter and jelly sandwich",
+    "id": "pb-and-j"
+  },
+  {
+    "category": "Easy Meals & Quick Bites",
+    "label": "Frozen chicken nuggets",
+    "id": "frozen-chicken-nuggets"
+  },
+  {
+    "category": "Easy Meals & Quick Bites",
+    "label": "Microwave burrito",
+    "id": "microwave-burrito"
+  },
+  {
+    "category": "Easy Meals & Quick Bites",
+    "label": "Instant oatmeal packet",
+    "id": "instant-oatmeal"
+  },
+  {
+    "category": "Easy Meals & Quick Bites",
+    "label": "Cup noodles",
+    "id": "cup-noodles"
+  },
+  {
+    "category": "Easy Meals & Quick Bites",
+    "label": "Frozen vegetables steam bag",
+    "id": "frozen-veggie-steam-bag"
+  },
+  {
+    "category": "Easy Meals & Quick Bites",
+    "label": "Microwave rice cup",
+    "id": "microwave-rice-cup"
+  },
+  {
+    "category": "Easy Meals & Quick Bites",
+    "label": "Cereal with milk",
+    "id": "cereal-with-milk"
+  },
+  {
+    "category": "Easy Meals & Quick Bites",
+    "label": "Frozen TV dinner",
+    "id": "frozen-tv-dinner"
+  },
+  {
+    "category": "Easy Meals & Quick Bites",
+    "label": "Instant mashed potatoes",
+    "id": "instant-mashed-potatoes"
   }
 ]

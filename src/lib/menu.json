@@ -1,0 +1,208 @@
+[
+  {
+    "category": "Snacks & Small Bites",
+    "label": "Nut mix (almonds, cashews, walnuts, peanuts)",
+    "id": "nut-mix-almonds-cashews-walnuts-peanuts"
+  },
+  {
+    "category": "Snacks & Small Bites",
+    "label": "Almonds and dark chocolate",
+    "id": "almonds-dark-chocolate"
+  },
+  {
+    "category": "Snacks & Small Bites",
+    "label": "Cheese and whole grain crackers",
+    "id": "cheese-whole-grain-crackers"
+  },
+  {
+    "category": "Snacks & Small Bites",
+    "label": "Apple slices with peanut butter",
+    "id": "apple-slices-peanut-butter"
+  },
+  {
+    "category": "Snacks & Small Bites",
+    "label": "Celery with hummus",
+    "id": "celery-hummus"
+  },
+  {
+    "category": "Snacks & Small Bites",
+    "label": "Hard-boiled eggs",
+    "id": "hard-boiled-eggs"
+  },
+  {
+    "category": "Snacks & Small Bites",
+    "label": "Protein bars",
+    "id": "protein-bars"
+  },
+  {
+    "category": "Snacks & Small Bites",
+    "label": "Trail mix (nuts, seeds, dried fruit)",
+    "id": "trail-mix-nuts-seeds-dried-fruit"
+  },
+  {
+    "category": "Snacks & Small Bites",
+    "label": "Sliced cucumbers with tzatziki",
+    "id": "sliced-cucumbers-tzatziki"
+  },
+  {
+    "category": "Snacks & Small Bites",
+    "label": "Cottage cheese with pineapple",
+    "id": "cottage-cheese-pineapple"
+  },
+  {
+    "category": "Snacks & Small Bites",
+    "label": "Popcorn with sea salt",
+    "id": "popcorn-sea-salt"
+  },
+  {
+    "category": "Snacks & Small Bites",
+    "label": "Carrot and celery sticks with ranch or hummus",
+    "id": "carrot-celery-sticks-ranch-hummus"
+  },
+  {
+    "category": "Snacks & Small Bites",
+    "label": "Greek yogurt with honey and walnuts",
+    "id": "greek-yogurt-honey-walnuts"
+  },
+  {
+    "category": "Snacks & Small Bites",
+    "label": "Dark chocolate-covered strawberries",
+    "id": "dark-chocolate-covered-strawberries"
+  },
+  {
+    "category": "Snacks & Small Bites",
+    "label": "Dried mango slices",
+    "id": "dried-mango-slices"
+  },
+  {
+    "category": "Snacks & Small Bites",
+    "label": "Frozen grapes",
+    "id": "frozen-grapes"
+  },
+  {
+    "category": "Sandwiches & Wraps",
+    "label": "Grilled chicken pesto sandwich with mozzarella and arugula",
+    "id": "grilled-chicken-pesto-sandwich",
+    "src": "/menu/featured-pesto-chicken-sandwich-recipe.jpg"
+  },
+  {
+    "category": "Sandwiches & Wraps",
+    "label": "Turkey and avocado sandwich on whole grain bread",
+    "id": "turkey-avocado-sandwich"
+  },
+  {
+    "category": "Sandwiches & Wraps",
+    "label": "Tuna salad sandwich on rye bread",
+    "id": "tuna-salad-sandwich"
+  },
+  {
+    "category": "Sandwiches & Wraps",
+    "label": "Roast beef and Swiss cheese sandwich with horseradish mayo",
+    "id": "roast-beef-swiss-sandwich"
+  },
+  {
+    "category": "Sandwiches & Wraps",
+    "label": "Classic BLT (bacon, lettuce, tomato) on toasted sourdough",
+    "id": "classic-blt"
+  },
+  {
+    "category": "Sandwiches & Wraps",
+    "label": "Buffalo chicken wrap with ranch and lettuce",
+    "id": "buffalo-chicken-wrap"
+  },
+  {
+    "category": "Sandwiches & Wraps",
+    "label": "Hummus and veggie wrap with spinach, cucumbers, and carrots",
+    "id": "hummus-veggie-wrap"
+  },
+  {
+    "category": "Sandwiches & Wraps",
+    "label": "Prosciutto and mozzarella panini with roasted red peppers",
+    "id": "prosciutto-mozzarella-panini"
+  },
+  {
+    "category": "Sandwiches & Wraps",
+    "label": "Crispy chicken sandwich with lettuce and chipotle mayo",
+    "id": "crispy-chicken-sandwich"
+  },
+  {
+    "category": "Sandwiches & Wraps",
+    "label": "Philly cheesesteak sandwich with caramelized onions",
+    "id": "philly-cheesesteak"
+  },
+  {
+    "category": "Sandwiches & Wraps",
+    "label": "Caprese sandwich with tomato, mozzarella, and basil on ciabatta",
+    "id": "caprese-sandwich"
+  },
+  {
+    "category": "Sandwiches & Wraps",
+    "label": "Grilled cheese with tomato soup",
+    "id": "grilled-cheese-tomato-soup"
+  },
+  {
+    "category": "Entrées & Main Dishes",
+    "label": "Burger and fries",
+    "id": "burger-fries"
+  },
+  {
+    "category": "Entrées & Main Dishes",
+    "label": "Beef nachos",
+    "id": "beef-nachos"
+  },
+  {
+    "category": "Entrées & Main Dishes",
+    "label": "Chipotle-style burrito",
+    "id": "chipotle-style-burrito"
+  },
+  {
+    "category": "Entrées & Main Dishes",
+    "label": "Chicken cutlet",
+    "id": "chicken-cutlet"
+  },
+  {
+    "category": "Entrées & Main Dishes",
+    "label": "Homemade gyro wrap",
+    "id": "homemade-gyro-wrap"
+  },
+  {
+    "category": "Entrées & Main Dishes",
+    "label": "Blackened chicken",
+    "id": "blackened-chicken"
+  },
+  {
+    "category": "Entrées & Main Dishes",
+    "label": "Pizza (Margherita, Pepperoni, Veggie, White Pizza with Ricotta)",
+    "id": "pizza-margherita-pepperoni-veggie"
+  },
+  {
+    "category": "Entrées & Main Dishes",
+    "label": "Chicken quesadilla",
+    "id": "chicken-quesadilla"
+  },
+  {
+    "category": "Breakfast & Brunch",
+    "label": "Egg and cheese sandwich on a bagel",
+    "id": "egg-cheese-sandwich-bagel"
+  },
+  {
+    "category": "Breakfast & Brunch",
+    "label": "Waffles",
+    "id": "waffles"
+  },
+  {
+    "category": "Breakfast & Brunch",
+    "label": "Pancakes",
+    "id": "pancakes"
+  },
+  {
+    "category": "Breakfast & Brunch",
+    "label": "Greek yogurt with honey and granola",
+    "id": "greek-yogurt-honey-granola"
+  },
+  {
+    "category": "Breakfast & Brunch",
+    "label": "Smoothies (banana, spinach, protein powder, almond milk)",
+    "id": "smoothies-banana-spinach-protein"
+  }
+]

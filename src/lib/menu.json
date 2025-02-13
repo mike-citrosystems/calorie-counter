@@ -505,5 +505,251 @@
     "category": "Easy Meals & Quick Bites",
     "label": "Instant mashed potatoes",
     "id": "instant-mashed-potatoes"
+  },
+  {
+    "category": "Salads & Bowls",
+    "label": "Caesar salad with grilled chicken",
+    "id": "caesar-salad-chicken",
+    "src": "/menu/featured-caesar-salad.jpg"
+  },
+  {
+    "category": "Salads & Bowls",
+    "label": "Greek salad with feta",
+    "id": "greek-salad"
+  },
+  {
+    "category": "Salads & Bowls",
+    "label": "Cobb salad",
+    "id": "cobb-salad"
+  },
+  {
+    "category": "Salads & Bowls",
+    "label": "Tuna poke bowl",
+    "id": "tuna-poke-bowl"
+  },
+  {
+    "category": "Salads & Bowls",
+    "label": "Buddha bowl with quinoa",
+    "id": "buddha-bowl"
+  },
+  {
+    "category": "Salads & Bowls",
+    "label": "Chicken burrito bowl",
+    "id": "chicken-burrito-bowl"
+  },
+  {
+    "category": "Salads & Bowls",
+    "label": "Asian chopped salad",
+    "id": "asian-chopped-salad"
+  },
+  {
+    "category": "Salads & Bowls",
+    "label": "Caprese salad",
+    "id": "caprese-salad"
+  },
+  {
+    "category": "Pasta & Noodles",
+    "label": "Spaghetti and meatballs",
+    "id": "spaghetti-meatballs",
+    "src": "/menu/featured-spaghetti.jpg"
+  },
+  {
+    "category": "Pasta & Noodles",
+    "label": "Fettuccine Alfredo",
+    "id": "fettuccine-alfredo"
+  },
+  {
+    "category": "Pasta & Noodles",
+    "label": "Penne alla vodka",
+    "id": "penne-vodka"
+  },
+  {
+    "category": "Pasta & Noodles",
+    "label": "Mac and cheese with breadcrumbs",
+    "id": "fancy-mac-cheese"
+  },
+  {
+    "category": "Pasta & Noodles",
+    "label": "Pad Thai",
+    "id": "pad-thai"
+  },
+  {
+    "category": "Pasta & Noodles",
+    "label": "Lo mein with vegetables",
+    "id": "lo-mein"
+  },
+  {
+    "category": "Pasta & Noodles",
+    "label": "Pesto pasta with chicken",
+    "id": "pesto-pasta-chicken"
+  },
+  {
+    "category": "Pasta & Noodles",
+    "label": "Carbonara",
+    "id": "carbonara"
+  },
+  {
+    "category": "Soups & Stews",
+    "label": "Classic chicken noodle soup",
+    "id": "chicken-noodle-soup",
+    "src": "/menu/featured-chicken-soup.jpg"
+  },
+  {
+    "category": "Soups & Stews",
+    "label": "Tomato basil soup",
+    "id": "tomato-basil-soup"
+  },
+  {
+    "category": "Soups & Stews",
+    "label": "Minestrone soup",
+    "id": "minestrone-soup"
+  },
+  {
+    "category": "Soups & Stews",
+    "label": "Lentil soup",
+    "id": "lentil-soup"
+  },
+  {
+    "category": "Soups & Stews",
+    "label": "Clam chowder",
+    "id": "clam-chowder"
+  },
+  {
+    "category": "Soups & Stews",
+    "label": "Butternut squash soup",
+    "id": "butternut-squash-soup"
+  },
+  {
+    "category": "Soups & Stews",
+    "label": "Split pea soup",
+    "id": "split-pea-soup"
+  },
+  {
+    "category": "Asian Cuisine",
+    "label": "Chicken fried rice",
+    "id": "chicken-fried-rice",
+    "src": "/menu/featured-fried-rice.jpg"
+  },
+  {
+    "category": "Asian Cuisine",
+    "label": "Beef and broccoli",
+    "id": "beef-and-broccoli"
+  },
+  {
+    "category": "Asian Cuisine",
+    "label": "Sweet and sour chicken",
+    "id": "sweet-sour-chicken"
+  },
+  {
+    "category": "Asian Cuisine",
+    "label": "Vegetable spring rolls",
+    "id": "vegetable-spring-rolls"
+  },
+  {
+    "category": "Asian Cuisine",
+    "label": "Kung pao chicken",
+    "id": "kung-pao-chicken"
+  },
+  {
+    "category": "Asian Cuisine",
+    "label": "Teriyaki salmon",
+    "id": "teriyaki-salmon"
+  },
+  {
+    "category": "Asian Cuisine",
+    "label": "Korean BBQ beef",
+    "id": "korean-bbq-beef"
+  },
+  {
+    "category": "Asian Cuisine",
+    "label": "Shrimp dumplings",
+    "id": "shrimp-dumplings"
+  },
+  {
+    "category": "Asian Cuisine",
+    "label": "Vegetable curry with rice",
+    "id": "vegetable-curry-rice"
+  },
+  {
+    "category": "Mexican Favorites",
+    "label": "Street tacos (chicken, beef, or fish)",
+    "id": "street-tacos",
+    "src": "/menu/featured-street-tacos.jpg"
+  },
+  {
+    "category": "Mexican Favorites",
+    "label": "Enchiladas verdes",
+    "id": "enchiladas-verdes"
+  },
+  {
+    "category": "Mexican Favorites",
+    "label": "Carne asada fries",
+    "id": "carne-asada-fries"
+  },
+  {
+    "category": "Mexican Favorites",
+    "label": "Chicken fajitas",
+    "id": "chicken-fajitas"
+  },
+  {
+    "category": "Mexican Favorites",
+    "label": "Guacamole and chips",
+    "id": "guacamole-chips"
+  },
+  {
+    "category": "Mexican Favorites",
+    "label": "Chile rellenos",
+    "id": "chile-rellenos"
+  },
+  {
+    "category": "Mexican Favorites",
+    "label": "Mexican rice and beans",
+    "id": "mexican-rice-beans"
+  },
+  {
+    "category": "Mexican Favorites",
+    "label": "Elote (Mexican street corn)",
+    "id": "elote"
+  },
+  {
+    "category": "Mediterranean Dishes",
+    "label": "Chicken shawarma plate",
+    "id": "chicken-shawarma",
+    "src": "/menu/featured-shawarma.jpg"
+  },
+  {
+    "category": "Mediterranean Dishes",
+    "label": "Falafel wrap",
+    "id": "falafel-wrap"
+  },
+  {
+    "category": "Mediterranean Dishes",
+    "label": "Greek chicken souvlaki",
+    "id": "chicken-souvlaki"
+  },
+  {
+    "category": "Mediterranean Dishes",
+    "label": "Hummus with pita bread",
+    "id": "hummus-pita"
+  },
+  {
+    "category": "Mediterranean Dishes",
+    "label": "Spanakopita (spinach pie)",
+    "id": "spanakopita"
+  },
+  {
+    "category": "Mediterranean Dishes",
+    "label": "Lamb kebabs",
+    "id": "lamb-kebabs"
+  },
+  {
+    "category": "Mediterranean Dishes",
+    "label": "Tabbouleh salad",
+    "id": "tabbouleh"
+  },
+  {
+    "category": "Mediterranean Dishes",
+    "label": "Moussaka",
+    "id": "moussaka"
   }
 ]

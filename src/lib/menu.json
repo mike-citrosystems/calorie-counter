@@ -287,5 +287,147 @@
     "category": "Side Dishes",
     "label": "Creamed spinach",
     "id": "creamed-spinach"
+  },
+  {
+    "category": "Slow Cooker Dishes",
+    "label": "Pulled pork with BBQ sauce",
+    "id": "slow-cooker-pulled-pork",
+    "src": "/menu/featured-pulled-pork-recipe.jpg"
+  },
+  {
+    "category": "Slow Cooker Dishes",
+    "label": "Beef and vegetable stew",
+    "id": "slow-cooker-beef-stew"
+  },
+  {
+    "category": "Slow Cooker Dishes",
+    "label": "Chicken tortilla soup",
+    "id": "slow-cooker-tortilla-soup"
+  },
+  {
+    "category": "Slow Cooker Dishes",
+    "label": "Mississippi pot roast",
+    "id": "slow-cooker-mississippi-roast"
+  },
+  {
+    "category": "Slow Cooker Dishes",
+    "label": "Italian meatballs in marinara",
+    "id": "slow-cooker-italian-meatballs"
+  },
+  {
+    "category": "Slow Cooker Dishes",
+    "label": "Honey garlic chicken thighs",
+    "id": "slow-cooker-honey-garlic-chicken"
+  },
+  {
+    "category": "Slow Cooker Dishes",
+    "label": "Vegetarian chili with beans",
+    "id": "slow-cooker-vegetarian-chili"
+  },
+  {
+    "category": "Slow Cooker Dishes",
+    "label": "Creamy potato and corn chowder",
+    "id": "slow-cooker-potato-chowder"
+  },
+  {
+    "category": "Slow Cooker Dishes",
+    "label": "Buffalo chicken dip",
+    "id": "slow-cooker-buffalo-chicken-dip"
+  },
+  {
+    "category": "Slow Cooker Dishes",
+    "label": "Carnitas (Mexican pulled pork)",
+    "id": "slow-cooker-carnitas"
+  },
+  {
+    "category": "Slow Cooker Dishes",
+    "label": "Butter chicken",
+    "id": "slow-cooker-butter-chicken"
+  },
+  {
+    "category": "Slow Cooker Dishes",
+    "label": "French onion soup",
+    "id": "slow-cooker-french-onion-soup"
+  },
+  {
+    "category": "Fruits & Berries",
+    "label": "Fresh apple",
+    "id": "fresh-apple",
+    "src": "/menu/featured-apple.jpg"
+  },
+  {
+    "category": "Fruits & Berries",
+    "label": "Banana",
+    "id": "banana"
+  },
+  {
+    "category": "Fruits & Berries",
+    "label": "Orange",
+    "id": "orange"
+  },
+  {
+    "category": "Fruits & Berries",
+    "label": "Mixed berries (strawberries, blueberries, raspberries)",
+    "id": "mixed-berries"
+  },
+  {
+    "category": "Fruits & Berries",
+    "label": "Sliced mango",
+    "id": "sliced-mango"
+  },
+  {
+    "category": "Fruits & Berries",
+    "label": "Green grapes",
+    "id": "green-grapes"
+  },
+  {
+    "category": "Fruits & Berries",
+    "label": "Red grapes",
+    "id": "red-grapes"
+  },
+  {
+    "category": "Fruits & Berries",
+    "label": "Pear",
+    "id": "pear"
+  },
+  {
+    "category": "Fruits & Berries",
+    "label": "Peach",
+    "id": "peach"
+  },
+  {
+    "category": "Fruits & Berries",
+    "label": "Plum",
+    "id": "plum"
+  },
+  {
+    "category": "Fruits & Berries",
+    "label": "Kiwi",
+    "id": "kiwi"
+  },
+  {
+    "category": "Fruits & Berries",
+    "label": "Pineapple chunks",
+    "id": "pineapple-chunks"
+  },
+  {
+    "category": "Fruits & Berries",
+    "label": "Watermelon slices",
+    "id": "watermelon-slices"
+  },
+  {
+    "category": "Fruits & Berries",
+    "label": "Cantaloupe",
+    "id": "cantaloupe"
+  },
+  {
+    "category": "Fruits & Berries",
+    "label": "Honeydew melon",
+    "id": "honeydew-melon"
+  },
+  {
+    "category": "Fruits & Berries",
+    "label": "Pomegranate seeds",
+    "id": "pomegranate-seeds"
   }
 ]
